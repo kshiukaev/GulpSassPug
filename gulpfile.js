@@ -11,10 +11,15 @@ gulp.task('pug', ['sass'], function(){
 	.pipe(gulp.dest('./'))
 	.pipe(browserSync.reload({stream: true}))
 });
+<<<<<<< HEAD
 
 
 gulp.task('sass', function() {
 	gulp.src('./sass/**//*.sass')
+=======
+gulp.task('sass', function() {
+	gulp.src('./sass/**/*.sass')
+>>>>>>> 48f3e5ed58f1c8a2d94f40f2f209da610e592a66
 	.pipe(sass())
 	.pipe(gulp.dest('./css'))
 	.pipe(browserSync.reload({stream: true}))
