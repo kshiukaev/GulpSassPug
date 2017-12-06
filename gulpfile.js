@@ -5,38 +5,34 @@ const 	gulp = require("gulp"),
 		browserSync = require("browser-sync").create();
 
 
-gulp.task('pug', ['sass'], function(){
-	return gulp.src('./*.pug')
-	.pipe(pug())
-	.pipe(gulp.dest('./'))
+gulp.task('pug', function(){
+	return gulp.src('./src/*.pug')
+	.pipe(pug({
+		pretty:true
+	}))
+	.pipe(gulp.dest('./build/'))
 	.pipe(browserSync.reload({stream: true}))
 });
-<<<<<<< HEAD
-
 
 gulp.task('sass', function() {
-	gulp.src('./sass/**//*.sass')
-=======
-gulp.task('sass', function() {
-	gulp.src('./sass/**/*.sass')
->>>>>>> 48f3e5ed58f1c8a2d94f40f2f209da610e592a66
+	gulp.src('./src/sass/**/*.sass')
 	.pipe(sass())
-	.pipe(gulp.dest('./css'))
+	.pipe(gulp.dest('./build/css'))
 	.pipe(browserSync.reload({stream: true}))
 });
 
 gulp.task('browserSync', function() {
     browserSync.init({
         server: {
-            baseDir: "./"
+            baseDir: "./build"
         }
     });
 });
 
-gulp.task('watch', ['browserSync', 'sass'], function(){
-	gulp.watch('sass/*.sass', ['sass']);
-	gulp.watch('./*.pug', ['pug']);
-	gulp.watch('./*.html', browserSync.reload);
-	gulp.watch('js/*.js', browserSync.reload);
+gulp.task('watch', ['browserSync','pug','sass'], function(){
+	gulp.watch('./src/sass/*.sass', ['sass']);
+	gulp.watch('./src/**/*.pug', ['pug']);
+	gulp.watch('./build/*.html', browserSync.reload);
+	gulp.watch('./src/js/*.js', browserSync.reload);
 	
 });

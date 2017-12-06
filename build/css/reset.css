@@ -43,8 +43,3 @@ q:before, q:after {
 table {
   border-collapse: collapse;
   border-spacing: 0; }
-
-h1.block {
-  display: block;
-  background-color: #904534;
-  color: #000; }
